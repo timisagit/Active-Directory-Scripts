@@ -1,0 +1,28 @@
+##PowerShell: Get-ADComputer to retrieve computer last logon date – part 1
+
+#Always import the module before starting:
+
+import-Module activedirectory
+
+#How to see what options are available:
+Get-Help Get-ADComputer
+
+#All properties for 1 computer:
+
+Get-ADComputer -Identity w10-lap-tearp-Properties *
+
+#Last Login details for that computer:
+
+Get-ADComputer -identity w10-lap-tearp -Properties * | FT Name, LastLogonDate -Autosize
+
+#Login details for all computers:
+
+Get-ADComputer -Filter * -Properties * | FT Name, LastLogonDate -Autosize
+
+#Order them by (sort):
+
+Get-ADComputer -Filter * -Properties *  | Sort LastLogonDate | FT Name, LastLogonDate -Autosize
+
+#Output this data (include operating system so can see where the vulnerabilities are):
+
+Get-ADComputer -Filter * -Properties *  | Sort LastLogonDate | FT Name, LastLogonDate, OperatingSystem -Autosize | Out-File C:\Temp\ComputerLastLogonDate.txt
