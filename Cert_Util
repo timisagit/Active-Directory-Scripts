@@ -1,0 +1,6 @@
+PS C:\certutil -dump <filename>
+Enter PFX password:
+
+Output will be the contents of the file IF it is a correctly formatted file. If it has changed in transit then it will output gash.
+
+To verify with the customer, create a SHA256 checksum value and send them this. They can then check this against their file to see if it has been changed.
